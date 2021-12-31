@@ -1,0 +1,33 @@
+p {
+  font-family: Lato;
+}
+
+.control-image {
+  position: relative;
+  background-color: blue;
+  text-align: left;
+  cursor: move;
+}
+
+.dragHandle {
+  position: absolute;
+  background-color: red;
+}
+
+.dragHandle.rb {
+  width: 15px;
+  height: 15px;
+  cursor: nwse-resize;
+}
+
+.dragHandle.right {
+  width: 2px;
+  height: 100%;
+  cursor: ew-resize;
+}
+
+.dragHandle.bottom {
+  height: 2px;
+  width: 100%;
+  cursor: ns-resize;
+}

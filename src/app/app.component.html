@@ -1,0 +1,40 @@
+<div>
+  <button (click)="addControl()">add</button>
+</div>
+<div>
+  <div class="example-container" cdkDropListGroup>
+    <div
+      *ngFor="let control of controls"
+      #resizeBox
+      class="control-image"
+      style="position: relative;"
+      cdkDrag
+      cdkDragBoundary=".header-image"
+      [style.width.px]="control.width"
+      [style.height.px]="control.height"
+      (click)="clickControl(control)"
+    >
+      <span
+        #dragHandleRB
+        [cdkDragLockAxis]="lockAxis"
+        class="dragHandle rb"
+        cdkDrag
+        (cdkDragMoved)="dragMove(dragHandleRB, $event, control)"
+      ></span>
+      <span
+        #dragHandleBottom
+        cdkDragLockAxis="y"
+        class="dragHandle bottom"
+        cdkDrag
+        (cdkDragMoved)="dragMove(dragHandleBottom, $event, control)"
+      ></span>
+      <span
+        #dragHandleRight
+        cdkDragLockAxis="x"
+        class="dragHandle right"
+        cdkDrag
+        (cdkDragMoved)="dragMove(dragHandleRight, $event, control)"
+      ></span>
+    </div>
+  </div>
+</div>
