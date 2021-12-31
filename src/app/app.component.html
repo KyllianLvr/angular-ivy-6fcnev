@@ -4,18 +4,25 @@
 <ul class="example-list">
   <li *ngFor="let control of controls">{{ control.index }}</li>
 </ul>
-<div>
-  <div class="example-container" cdkDropListGroup>
+<div class="example-container" cdkDropListGroup>
+  <div
+    *ngFor="let control of controls"
+    #resizeBox
+    class="control-image"
+    style="position: relative;"
+    cdkDrag
+    cdkDropList
+    [cdkDragData]="control.index"
+    cdkDragBoundary=".header-image"
+    [style.width.px]="control.width"
+    [style.height.px]="control.height"
+    (click)="clickControl(control)"
+  >
     <div
-      *ngFor="let control of controls"
-      #resizeBox
-      class="control-image"
-      style="position: relative;"
       cdkDrag
-      cdkDragBoundary=".header-image"
-      [style.width.px]="control.width"
-      [style.height.px]="control.height"
-      (click)="clickControl(control)"
+      [cdkDragData]="control.index"
+      (cdkDragEntered)="dragEntered($event)"
+      class="example-box"
     >
       <span
         #dragHandleRB
@@ -23,7 +30,9 @@
         class="dragHandle rb"
         cdkDrag
         (cdkDragMoved)="dragMove(dragHandleRB, $event, control)"
-      ></span>
+      >
+        {{ control.index }}
+      </span>
       <span
         #dragHandleBottom
         cdkDragLockAxis="y"

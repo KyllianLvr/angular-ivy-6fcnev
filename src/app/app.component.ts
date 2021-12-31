@@ -7,7 +7,9 @@ import {
   NgZone,
 } from '@angular/core';
 import { Control, IControl } from './control.model';
-import { CdkDragMove } from '@angular/cdk/drag-drop';
+import {   CdkDragEnter,
+  moveItemInArray,
+  CdkDragMove } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'my-app',
@@ -169,5 +171,19 @@ export class AppComponent {
 
   clickControl(control: Control): void {
     this.selectedControl = control;
+  }
+
+  dragEntered(event: CdkDragEnter<number>) {
+    const drag = event.item;
+    const dropList = event.container;
+    const dragIndex = drag.data;
+    const dropIndex = dropList.data;
+
+    const phContainer = dropList.element.nativeElement;
+    const phElement = phContainer.querySelector('.cdk-drag-placeholder');
+    phContainer.removeChild(phElement);
+    phContainer.parentElement.insertBefore(phElement, phContainer);
+
+    moveItemInArray(this.controls, dragIndex, dropIndex);
   }
 }
