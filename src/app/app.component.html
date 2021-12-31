@@ -1,6 +1,9 @@
 <div>
   <button (click)="addControl()">add</button>
 </div>
+<ul class="example-list">
+  <li *ngFor="let control of controls">{{ control.index }}</li>
+</ul>
 <div>
   <div class="example-container" cdkDropListGroup>
     <div
